@@ -1,6 +1,6 @@
 # jdbc-rest
 jdbc wrapper on actual jdbc driver for executing parameterized sql statements and convert the results into json.
-On this driver we have also developed a REST API server application [jdbc-rest](https://github.com/vnetcon/jdbc-restservlet)
+On this driver we have also developed a REST API server application [jdbc-restservlet](https://github.com/vnetcon/jdbc-restservlet)
 
 Below is a simple query
 ```sql
