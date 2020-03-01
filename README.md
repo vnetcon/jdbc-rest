@@ -39,3 +39,5 @@ Below is a screenshot where we have add the jdbc-rest driver into DBeaver and ex
 ![jdbc-rest-dbeaver](http://vnetcon.s3-website-eu-west-1.amazonaws.com/img/jdbc-rest-dbeaver.png)
 
 
+//TODO: Finalize this documentation, add the code and create wiki pages. In short we will update these pages soon
+
