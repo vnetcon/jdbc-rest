@@ -13,3 +13,21 @@ and below is the returned result as json
 }
 ```
 
+And then slightly more advanced example
+```sql
+select fname as "FirstName", lname as "LastName" 
+from miki.mikitest 
+where fname = '{r_fname}' --[json=Person; r_fname=Adam]
+```
+which poduce following json
+
+```json
+{
+  "Person": {
+    "FirstName": "Adam",
+    "LastName": "Smith"
+  }
+}
+```
+
+
