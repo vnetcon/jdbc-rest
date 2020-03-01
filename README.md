@@ -10,5 +10,6 @@ and below is the returned result as json
 {
   "fname": "Adam",
   "lname": "Smith"
-}```
+}
+```
 
