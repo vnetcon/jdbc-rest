@@ -29,5 +29,8 @@ which poduce following json
   }
 }
 ```
+In this example we used r_fname parameter. r_ stands for request parameter that are passed in jdbc-restservelt to driver and are replaced with the values the requester send to servlet. In here we add "r_fname=Adam" as a default request parameter if the requests parameters are not avalable (e.g. you are running the queries in DBeaver).
+
+
 
 
