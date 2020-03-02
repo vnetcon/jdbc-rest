@@ -2,9 +2,11 @@
 jdbc wrapper on actual jdbc driver for executing parameterized sql statements and convert the results into json.
 On this driver we have also developed a REST API server application [jdbc-restservlet](https://github.com/vnetcon/jdbc-restservlet)
 
-## Bulding
+## Building
 mvn clean install
 mvn package
+
+## Short introduction
 
 Below is a simple query
 ```sql
@@ -19,7 +21,7 @@ and below is the returned result as json
 ```
 
 And then slightly more advanced example
-```sql
+```
 select fname as "FirstName", lname as "LastName" 
 from miki.mikitest 
 where fname = '{r_fname}' --[json=Person; r_fname=Adam]
