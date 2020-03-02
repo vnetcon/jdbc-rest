@@ -7,8 +7,8 @@ mvn clean install
 mvn package
 
 ## Commercial use
-If you want ot use this in closed code project or product you can buy a 99 USD license [here](https://vnetcon.com)  
-If you think tha price is too low or high you can also change the price there :)
+If you want to use this in closed code project or product you can buy a 99 USD license [here](https://vnetcon.com)  
+If you think the price is too low or high you can also change the price there :)
 
 
 ## Short introduction
