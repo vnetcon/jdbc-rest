@@ -3,7 +3,7 @@ jdbc wrapper on actual jdbc driver for executing parameterized sql statements an
 On this driver we have also developed a REST API server application [jdbc-restservlet](https://github.com/vnetcon/jdbc-restservlet)
 
 ## Building
-mvn clean install
+mvn clean install  
 mvn package
 
 ## Short introduction
