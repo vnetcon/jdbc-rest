@@ -211,6 +211,14 @@ public class RestDriver implements Driver {
 		if(url != null && url.startsWith(urlPrefix)) {
 			String dbConfig = this.getDatabaseConfigString(url);
 			this.loadProperties(dbConfig);
+			
+			if(((Properties)dbProps.get(dbConfig)).getProperty(dbConfig + ".jdbc.driver") != null) {
+				try {
+					Class.forName(((Properties)dbProps.get(dbConfig)).getProperty(dbConfig + ".jdbc.driver"));
+				} catch (ClassNotFoundException e) {
+					throw new SQLException(e);
+				}
+			}
 			System.out.println("jdbc-rest: loading database properties " + dbConfig);
 			String jdbcUrl = ((Properties)dbProps.get(dbConfig)).getProperty(dbConfig + ".jdbc.url");
 			String jdbcUser = ((Properties)dbProps.get(dbConfig)).getProperty(dbConfig + ".jdbc.user");
@@ -220,9 +228,16 @@ public class RestDriver implements Driver {
 			((Properties)dbProps.get(dbConfig)).setProperty("dbConfig", dbConfig);
 			dbProps.put(jdbcUrl, dbProps.get(dbConfig));
 			Connection realCon = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPass); 
+//			Driver d = DriverManager.getDriver(jdbcUrl);
+//			Properties infor = new Properties();
+//			infor.setProperty("user", jdbcUser);
+//			infor.setProperty("password", jdbcPass);
+//			Connection realCon = d.connect(jdbcUrl, infor);
 			RestConnection con = new RestConnection(dbConfig, realCon);
 			return con;
-		}else {
+		}
+		/*
+		else {
 			System.out.println("jdbc-rest: loading database properties " + url);
 			String jdbcUser = ((Properties)dbProps.get(url)).getProperty("jdbc.user");
 			String jdbcPass = ((Properties)dbProps.get(url)).getProperty("jdbc.pass");
@@ -242,7 +257,11 @@ public class RestDriver implements Driver {
 			lastRetRealCon = (Connection)dbProps.get(url + "-conn");
 			lastRetCon = con;
 			return null;
+			
+			
 		}
+		*/
+		return null;
 		
 	}
 
