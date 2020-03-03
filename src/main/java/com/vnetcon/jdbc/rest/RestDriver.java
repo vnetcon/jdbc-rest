@@ -14,8 +14,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
 public class RestDriver implements Driver {
 
