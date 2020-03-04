@@ -61,7 +61,7 @@ If you think the price is too low or high you can also change the price there :)
 
 Below is a screenshot of DBeqver executing sql statements
 
-![jdbc-rest-dbeaver](http://vnetcon.s3-website-eu-west-1.amazonaws.com/img/jdbc-json-dbeaver.png)
+![jdbc-rest-dbeaver](http://vnetcon.s3-website-eu-west-1.amazonaws.com/img/jdbc-rest-dbeaver.png)
 
 
 
