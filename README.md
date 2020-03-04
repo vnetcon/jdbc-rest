@@ -59,6 +59,39 @@ The DBeaver has ready configured setting for creating and executing sql statemen
 If you want to use this in closed code project or product you can buy a 99 USD license [here](https://vnetcon.com)  
 If you think the price is too low or high you can also change the price there :)
 
+## sql syntex and parameters
+In short the idea is to contert normal sql to json by with --[json] comment. This comment will tell the driver 
+to convert execute the statement as jdbc-rest statement. Below is a simple example
+
+```
+select fname as "FirstName", lname as "LastName" 
+from miki.mikitest 
+where fname = '{r_fname}' --[json=Person; r_fname=Adam]
+```
+which poduce following json
+
+```json
+{
+  "Person": {
+    "FirstName": "Adam",
+    "LastName": "Smith"
+  }
+}
+```
+
+Below are some notes related to this. More detailed examples can be fuond from dev-nev.zip and DBeaver in there.
+* --[json]: convert the result set to json and in insert/update/delete replace the rest-json parameters '{param_name}' with correct valus
+* --[json=Person]: Give the name for root elemente in select statements
+* r_ at the begining of parameter indicates that the actual value is retrived from htttp request (e.g. client send client id the parameter is sql should be '{r_clientid}'
+* --[json:Person; r_clientid=default_value]: Set the default value for parameter 
+* hidden_ indicates that the column should not be displayed in result json (e.g. select a as hidden_a from table)
+* subquery_ indicates that the column is a select that should be executed (e.g. select 'select a, b form table' as subquery_colname). It is possible to have subqueries in subqueries.
+* t_ indicates that the param value should be replaced in subquery with "parent sql column value" (e.g.  '{t_userid}' would be replaced with userid columnvalue from main query
+
+## Data types
+All data is treated as stings. If you need to insert/update data in different data type you need to put the parameter into database function that will do the conversion.  
+insert into table a (a, b) values ('{r_a}', to_number('{r_b}') --[json]
+
 
 ## Screenshots
 Below is a screenshot of DBeqver executing sql statements
