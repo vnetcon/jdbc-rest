@@ -101,7 +101,6 @@ public class RestStatement implements Statement {
 	public boolean execute(String sql) throws SQLException {
 		String psql= sql;
 		this.sql = sql;
-		System.out.println("Executing query: " + sql);
 		
 		if(this.jsonParams == null) {
 			this.jsonParams = RestDriver.getJsonParams(sql);
@@ -115,9 +114,7 @@ public class RestStatement implements Statement {
 				String key = iter.next();
 				String value = queryParams.get(key);
 				String safeValue = RestDriver.getSafeSql(value);
-				System.out.println("  queryparamset: " + key + " = " + value);
 				psql = psql.replace("'{r_" + key + "}'", safeValue);
-				System.out.println("   sql after set: " + psql);
 			}
 		}
 		
