@@ -16,8 +16,8 @@ public class RestStatement implements Statement {
 	private Statement realStmt = null;
 	private RestConnection restCon = null;
 	private String sql = null;
-	private Map<String, String> jsonParams;
-	private Map<String, String> queryParams;
+	private Map<String, String> jsonParams = null;
+	private Map<String, String> queryParams = null;
 
 	
 	public RestStatement(RestConnection restCon, Statement stmt, Map<String, String> jsonParams, Map<String, String> queryParams) {
@@ -40,38 +40,9 @@ public class RestStatement implements Statement {
 	}
 
 	public ResultSet executeQuery(String sql) throws SQLException {
-		/*
-		String psql = sql;
-		this.sql = sql;
-		if(sql != null && sql.trim().toLowerCase().indexOf(RestDriver.jsonPrefix) > -1) {
-			
-			if(jsonParams == null) {
-				jsonParams = RestDriver.getJsonParams(sql);
-			}
-
-			Set<String> keys = jsonParams.keySet();
-			Iterator<String> iter = keys.iterator();
-			while(iter.hasNext()) {
-				String key = iter.next();
-				String value = jsonParams.get(key);
-				String safeValue = RestDriver.getSafeSql(value);
-				psql = psql.replace("'{" + key + "}'", safeValue);
-			}
-			sql = psql;
-			
-			   
-			ResultSet rs = realStmt.executeQuery(sql);
-			RestResultSet rrs = new RestResultSet(restCon, this, rs, sql, jsonParams, queryParams);
-			return rrs;
-		}else {
-			ResultSet rs = realStmt.executeQuery(sql);			
-			return rs;
-		}
-		*/
 		if(this.execute(sql)) {
 			return this.getResultSet();
 		}
-		//throw new SQLException("SQL execute return false for some reason.");
 		return null;
 	}
 
@@ -130,19 +101,34 @@ public class RestStatement implements Statement {
 	public boolean execute(String sql) throws SQLException {
 		String psql= sql;
 		this.sql = sql;
+		System.out.println("Executing query: " + sql);
 		
 		if(this.jsonParams == null) {
 			this.jsonParams = RestDriver.getJsonParams(sql);
+		}
+
+		
+		if(queryParams != null) {
+			Set<String> keys = queryParams.keySet();
+			Iterator<String> iter = keys.iterator();
+			while(iter.hasNext()) {
+				String key = iter.next();
+				String value = queryParams.get(key);
+				String safeValue = RestDriver.getSafeSql(value);
+				System.out.println("  queryparamset: " + key + " = " + value);
+				psql = psql.replace("'{r_" + key + "}'", safeValue);
+				System.out.println("   sql after set: " + psql);
+			}
 		}
 		
 		Set<String> keys = jsonParams.keySet();
 		Iterator<String> iter = keys.iterator();
 		while(iter.hasNext()) {
-			String key = iter.next();
+			String key = iter.next().trim();
 			String value = jsonParams.get(key);
 
 			if(key.toLowerCase().startsWith("r_") && this.isParamsFromWebContaier()) {
-				String s = key;
+				String s = key.trim();
 				s = s.replaceFirst("r_", "");
 				s = s.replaceFirst("R_", "");
 
@@ -155,18 +141,10 @@ public class RestStatement implements Statement {
 			psql = psql.replace("'{" + key + "}'", safeValue);
 		}
 
-		if(queryParams != null) {
-			keys = queryParams.keySet();
-			iter = keys.iterator();
-			while(iter.hasNext()) {
-				String key = iter.next();
-				String value = queryParams.get(key);
-				String safeValue = RestDriver.getSafeSql(value);
-				psql = psql.replace("'{r_" + key + "}'", safeValue);
-			}
-		}
 		
-		this.sql = psql;
+		if(this.sql.indexOf(RestDriver.restConfigTable) < 0) {
+			this.sql = psql;
+		}
 		
 		return realStmt.execute(this.sql);
 	}

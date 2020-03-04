@@ -29,6 +29,7 @@ public class RestDriver implements Driver {
 	public static final String restColClassName = "java.lang.String";
 	public static final String queryParamPrefix = "q_";
 	public static final String tableParamPrefix = "t_";
+	public static final String restConfigTable = "REST_SERVLET_CONFIG";
 	
 	private static final String dbConf = "/etc/vnetcon/database.properties";
 	private static final String urlPrefix = "jdbc:vnetcon:rest://";

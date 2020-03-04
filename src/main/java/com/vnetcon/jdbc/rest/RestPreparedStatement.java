@@ -42,32 +42,8 @@ public class RestPreparedStatement implements PreparedStatement {
 		this.sql = sql;
 		this.jsonParams = jsonParams;
 		this.queryParams = queryParams;
-
-		
-		if(this.jsonParams == null) {
-			this.jsonParams = RestDriver.getJsonParams(sql);
-		}
-				
-		Set<String> keys = jsonParams.keySet();
-		Iterator<String> iter = keys.iterator();
-		while(iter.hasNext()) {
-			String key = iter.next();
-			String value = jsonParams.get(key);
-			
-			if(key.toLowerCase().startsWith("r_") && this.isParamsFromWebContaier()) {
-				String s = key;
-				s = s.replaceFirst("r_", "");
-				s = s.replaceFirst("R_", "");
-				if(this.queryParams != null) {
-					value = queryParams.get(s);
-				}
-			}
-			
-			String safeValue = RestDriver.getSafeSql(value);
-			psql = psql.replace("'{" + key + "}'", safeValue);
-		}
 		this.sql = psql;
-		
+		//PREPARED STATEMENT NOT IMPLEMENTED YET
 	}
 	
 	public boolean isParamsFromWebContaier() {
@@ -252,14 +228,7 @@ public class RestPreparedStatement implements PreparedStatement {
 	}
 
 	public ResultSet executeQuery() throws SQLException {
-		if(sql != null && sql.trim().toLowerCase().indexOf(RestDriver.jsonPrefix) > 0) {
-			ResultSet rs = realStmt.executeQuery();
-			RestResultSet rrs = new RestResultSet((RestConnection)restCon, this, rs, sql, jsonParams, queryParams);
-			return rrs;
-		}else {
-			ResultSet rs = realStmt.executeQuery();			
-			return rs;
-		}
+		return realStmt.executeQuery();			
 	}
 	
 

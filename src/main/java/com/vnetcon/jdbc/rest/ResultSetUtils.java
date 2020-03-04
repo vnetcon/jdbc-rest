@@ -15,6 +15,7 @@ public class ResultSetUtils {
 
 	private Map<String, List<String>> rsCols = new HashMap<String, List<String>>();
 	private Gson gson = new Gson();
+	
 	private Map<String, String> jsonParams;
 	private Map<String, String> queryParams;
 	

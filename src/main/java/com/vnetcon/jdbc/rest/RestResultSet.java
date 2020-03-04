@@ -99,171 +99,147 @@ public class RestResultSet implements ResultSet {
 	}
 
 	public boolean wasNull() throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.wasNull();
 	}
 
 	public String getString(int columnIndex) throws SQLException {
-		if(columnIndex == 1) {
-			try {
-				String json = rsu.rowToJson(restCon, realRs, jsonParams, queryParams);
-				
-				if(jsonParams.containsKey(RestDriver.jsonPrefix)) {
-					String value = jsonParams.get(RestDriver.jsonPrefix);
-					if(value != null) {
-						json = "{\"" + value + "\" : " + json + "}";
-					}
-				}
-				
-				return json;
-			} catch (Exception e) {
-				throw new SQLException(e);
-			}
-		}
-		throw new SQLException("Only columnnumber 1 is available in rest driver");
+		return realRs.getString(columnIndex);
 	}
 
 	public boolean getBoolean(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getBoolean(columnIndex);
 	}
 
 	public byte getByte(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getByte(columnIndex);
 	}
 
 	public short getShort(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getShort(columnIndex);
 	}
 
 	public int getInt(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getInt(columnIndex);
 	}
 
 	public long getLong(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getLong(columnIndex);
 	}
 
 	public float getFloat(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getFloat(columnIndex);
 	}
 
 	public double getDouble(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getDouble(columnIndex);
 	}
 
 	public BigDecimal getBigDecimal(int columnIndex, int scale) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getBigDecimal(columnIndex, scale);
 	}
 
 	public byte[] getBytes(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getBytes(columnIndex);
 	}
 
 	public Date getDate(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getDate(columnIndex);
 	}
 
 	public Time getTime(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getTime(columnIndex);
 	}
 
 	public Timestamp getTimestamp(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getTimestamp(columnIndex);
 	}
 
 	public InputStream getAsciiStream(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getAsciiStream(columnIndex);
 	}
 
 	public InputStream getUnicodeStream(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getUnicodeStream(columnIndex);
 	}
 
 	public InputStream getBinaryStream(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getBinaryStream(columnIndex);
 	}
 
 	public String getString(String columnLabel) throws SQLException {
-		if(RestDriver.restColumnName.contentEquals(columnLabel)) {
-			try {
-				String json = rsu.rowToJson(restCon, realRs, jsonParams, queryParams);
-				return json;
-			} catch (Exception e) {
-				throw new SQLException(e);
-			}
-		}
-		throw new SQLException("Only " + RestDriver.restColumnName + " column is available in rest driver");
+		return realRs.getString(columnLabel);
 	}
 
 	public boolean getBoolean(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getBoolean(columnLabel);
 	}
 
 	public byte getByte(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getByte(columnLabel);
 	}
 
 	public short getShort(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getShort(columnLabel);
 	}
 
 	public int getInt(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getInt(columnLabel);
 	}
 
 	public long getLong(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getLong(columnLabel);
 	}
 
 	public float getFloat(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getFloat(columnLabel);
 	}
 
 	public double getDouble(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getDouble(columnLabel);
 	}
 
 	public BigDecimal getBigDecimal(String columnLabel, int scale) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getBigDecimal(columnLabel, scale);
 	}
 
 	public byte[] getBytes(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getBytes(columnLabel);
 	}
 
 	public Date getDate(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getDate(columnLabel);
 	}
 
 	public Time getTime(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getTime(columnLabel);
 	}
 
 	public Timestamp getTimestamp(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getTimestamp(columnLabel);
 	}
 
 	public InputStream getAsciiStream(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getAsciiStream(columnLabel);
 	}
 
 	public InputStream getUnicodeStream(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getUnicodeStream(columnLabel);
 	}
 
 	public InputStream getBinaryStream(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getBinaryStream(columnLabel);
 	}
 
 	public SQLWarning getWarnings() throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getWarnings();
 	}
 
 	public void clearWarnings() throws SQLException {
-		throw new UnsupportedOperationException();
+		realRs.clearWarnings();
 	}
 
 	public String getCursorName() throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getCursorName();
 	}
 
 	public ResultSetMetaData getMetaData() throws SQLException {
@@ -308,27 +284,27 @@ public class RestResultSet implements ResultSet {
 	}
 
 	public Object getObject(String columnLabel) throws SQLException {
-		return "getObjectWithName: " + columnLabel;
+		return realRs.getObject(columnLabel);
 	}
 
 	public int findColumn(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.findColumn(columnLabel);
 	}
 
 	public Reader getCharacterStream(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getCharacterStream(columnIndex);
 	}
 
 	public Reader getCharacterStream(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getCharacterStream(columnLabel);
 	}
 
 	public BigDecimal getBigDecimal(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getBigDecimal(columnIndex);
 	}
 
 	public BigDecimal getBigDecimal(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getBigDecimal(columnLabel);
 	}
 
 	public boolean isBeforeFirst() throws SQLException {
@@ -608,7 +584,7 @@ public class RestResultSet implements ResultSet {
 	}
 
 	public Blob getBlob(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getBlob(columnIndex);
 	}
 
 	public Clob getClob(int columnIndex) throws SQLException {
@@ -632,7 +608,7 @@ public class RestResultSet implements ResultSet {
 	}
 
 	public Array getArray(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getArray(columnIndex);
 	}
 
 	public Object getObject(String columnLabel, Map<String, Class<?>> map) throws SQLException {
@@ -644,7 +620,7 @@ public class RestResultSet implements ResultSet {
 	}
 
 	public Blob getBlob(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getBlob(columnLabel);
 	}
 
 	public Clob getClob(String columnLabel) throws SQLException {
@@ -660,39 +636,39 @@ public class RestResultSet implements ResultSet {
 	}
 
 	public Array getArray(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getArray(columnLabel);
 	}
 
 	public Date getDate(int columnIndex, Calendar cal) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getDate(columnIndex, cal);
 	}
 
 	public Date getDate(String columnLabel, Calendar cal) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getDate(columnLabel, cal);
 	}
 
 	public Time getTime(int columnIndex, Calendar cal) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getTime(columnIndex, cal);
 	}
 
 	public Time getTime(String columnLabel, Calendar cal) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getTime(columnLabel, cal);
 	}
 
 	public Timestamp getTimestamp(int columnIndex, Calendar cal) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getTimestamp(columnIndex, cal);
 	}
 
 	public Timestamp getTimestamp(String columnLabel, Calendar cal) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getTimestamp(columnLabel, cal);
 	}
 
 	public URL getURL(int columnIndex) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getURL(columnIndex);
 	}
 
 	public URL getURL(String columnLabel) throws SQLException {
-		throw new UnsupportedOperationException();
+		return realRs.getURL(columnLabel);
 	}
 
 	public void updateRef(int columnIndex, Ref x) throws SQLException {
@@ -728,11 +704,11 @@ public class RestResultSet implements ResultSet {
 	}
 
 	public RowId getRowId(int columnIndex) throws SQLException {
-		return null;
+		return realRs.getRowId(columnIndex);
 	}
 
 	public RowId getRowId(String columnLabel) throws SQLException {
-		return null;
+		return realRs.getRowId(columnLabel);
 	}
 
 	public void updateRowId(int columnIndex, RowId x) throws SQLException {
