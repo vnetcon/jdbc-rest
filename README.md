@@ -54,6 +54,8 @@ The DBeaver has ready configured setting for creating and executing sql statemen
 3. execute: mvn package  
 4. Use the *-with-dependencies.jar" as your jdbc driver
 
+## Suported databases
+In theory all databases that have JDBC driver. Postgresql, Oracle, SQL Server etc.
 
 ## Commercial use
 If you want to use this in closed code project or product you can buy a 99 USD license [here](https://vnetcon.com)  
