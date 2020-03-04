@@ -36,7 +36,7 @@ For setting up the development environment you don't need install anything.
 You just download the zip file and start the downloaded software with following steps:  
 
 * create folder c:\vnetcon
-* Download Development environment [here]() to c:\vnetcon
+* Download Development environment [here](http://vnetcon.s3-website-eu-west-1.amazonaws.com/dev-env.zip) to c:\vnetcon
 * unzip the file. After this you should have c:\vnetcon\dev-env folder
 * Create folder c:\etc\vnetcon and copy the database.properties file there
 * Start databaes by double clicking 1_StartPostgreSQL.bat
