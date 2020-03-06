@@ -99,7 +99,7 @@ insert into table a (a, b) values ('{r_a}', to_number('{r_b}') --[json]
 ## Screenshots
 Below is a screenshot of DBeqver executing sql statements
 
-![jdbc-rest-dbeaver](http://vnetcon.s3-website-eu-west-1.amazonaws.com/img/jdbc-rest-dbeaver.png)
+![jdbc-json-dbeaver](http://vnetcon.s3-website-eu-west-1.amazonaws.com/img/jdbc-json-dbeaverx.png)
 
 
 
