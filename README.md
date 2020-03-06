@@ -63,7 +63,7 @@ he key for understanding the jdbc url format is to keep in mind, that the /etc/v
 start point for creating connection. Example from following url
   
 ```
-jdbc:vnetcon:json://default?url=C:\vnetcon\dev-env\example-data&dbschema=finvoice
+jdbc:vnetcon:rest://default
 ```
 
   
