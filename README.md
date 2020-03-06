@@ -39,7 +39,8 @@ You just download the zip file and start the downloaded software with following 
 * Download Development environment [here](http://vnetcon.s3-website-eu-west-1.amazonaws.com/dev-env.zip) to c:\vnetcon
 * unzip the file. After this you should have c:\vnetcon\dev-env folder
 * Create folder c:\etc\vnetcon and copy the database.properties file there
-* Start databaes by double clicking 1_StartPostgreSQL.bat
+* Start apache drill by double clicking 1_StartDrill.bat
+* Start database by double clicking 1_StartPostgreSQL.bat
 * Start [DBeaver](https://dbeaver.io/) database tool by double clicking 2_StartDBeaver.bat
 * Start Tomcat by double clicking 3_StartTomcat8.bat
 
