@@ -41,10 +41,12 @@ public class ResultSetUtils {
 		ResultSet rs = stmt.executeQuery(sql);
 		int rowCount = 0;
 		String firstBuf = null;
+		json.append("[");
 		while(rs.next()) {
 			
 			if(firstBuf != null && rowCount == 1) {
-				json.append("[");
+				// moved up so in every case an array is returned in subqueries
+				//json.append("[");
 				json.append(firstBuf);
 				firstBuf = null;
 			}
@@ -140,6 +142,7 @@ public class ResultSetUtils {
 		sRet = sRet.replace("\"}]\",\"", "\"}],\"");
 		
 		sRet = sRet.replace("]\"}", "]}");
+		sRet = sRet.replace("]\",", "],");
 		sRet = sRet.replace("\"[", "[");
 		return sRet;
 	}

@@ -263,8 +263,9 @@ public class RestResultSet implements ResultSet {
 	public Object getObject(int columnIndex) throws SQLException {
 		
 		if(isJson) {
+			String json = null;
 			try {
-				String json = rsu.rowToJson(restCon, realRs, jsonParams, queryParams);
+				json = rsu.rowToJson(restCon, realRs, jsonParams, queryParams);
 				
 				if(jsonParams.containsKey(RestDriver.jsonPrefix)) {
 					String value = jsonParams.get(RestDriver.jsonPrefix);
@@ -276,7 +277,7 @@ public class RestResultSet implements ResultSet {
 				json = toPrettyFormat(json);
 				return new SerialClob(json.toCharArray());
 			} catch (Exception e) {
-				throw new SQLException(e);
+				throw new SQLException(json);
 			}
 		} else {
 			return realRs.getObject(columnIndex);
