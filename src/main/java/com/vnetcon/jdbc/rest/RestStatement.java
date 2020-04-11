@@ -142,7 +142,6 @@ public class RestStatement implements Statement {
 		if(this.sql.indexOf(RestDriver.restConfigTable) < 0) {
 			this.sql = psql;
 		}
-		
 		return realStmt.execute(this.sql);
 	}
 

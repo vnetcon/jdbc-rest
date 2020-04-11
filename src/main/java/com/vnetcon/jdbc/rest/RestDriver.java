@@ -21,7 +21,8 @@ public class RestDriver implements Driver {
 	
 	public static final String jsonPrefixInSql = "--[json";
 	public static final String jsonPrefix = "json";
-	public static final String restColumnName = "vnetcon_json";
+	public static final String restColumnNameJson = "vnetcon_json";
+	public static final String restColumnNameExecVals = "vnetcon_execvals";
 	public static final String restSchema = "vnetcon";
 	public static final String restTable = "json";
 	public static final int restColType = Types.CLOB;
@@ -218,7 +219,7 @@ public class RestDriver implements Driver {
 					throw new SQLException(e);
 				}
 			}
-			System.out.println("jdbc-rest: loading database properties " + dbConfig);
+
 			String jdbcUrl = ((Properties)dbProps.get(dbConfig)).getProperty(dbConfig + ".jdbc.url");
 			String jdbcUser = ((Properties)dbProps.get(dbConfig)).getProperty(dbConfig + ".jdbc.user");
 			String jdbcPass = ((Properties)dbProps.get(dbConfig)).getProperty(dbConfig + ".jdbc.pass");

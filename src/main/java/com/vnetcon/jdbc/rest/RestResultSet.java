@@ -52,6 +52,8 @@ public class RestResultSet implements ResultSet {
 		this.jsonParams = jsonParams;
 		this.queryParams = queryParams;
 		
+		rsu.setMainSql(this.sql);
+		
 		if(this.jsonParams == null) {
 			this.jsonParams = RestDriver.getJsonParams(sql);
 		}
@@ -265,17 +267,22 @@ public class RestResultSet implements ResultSet {
 		if(isJson) {
 			String json = null;
 			try {
-				json = rsu.rowToJson(restCon, realRs, jsonParams, queryParams);
 				
-				if(jsonParams.containsKey(RestDriver.jsonPrefix)) {
-					String value = jsonParams.get(RestDriver.jsonPrefix);
-					if(value != null) {
-						json = "{\"" + value + "\" : " + json + "}";
+				if(columnIndex == 1) {
+					json = rsu.rowToJson(restCon, realRs, jsonParams, queryParams);
+					
+					if(jsonParams.containsKey(RestDriver.jsonPrefix)) {
+						String value = jsonParams.get(RestDriver.jsonPrefix);
+						if(value != null) {
+							json = "{\"" + value + "\" : " + json + "}";
+						}
 					}
+									
+					json = toPrettyFormat(json);
+					return new SerialClob(json.toCharArray());
+				} else {
+					return new SerialClob(rsu.getRealVals().toCharArray());
 				}
-								
-				json = toPrettyFormat(json);
-				return new SerialClob(json.toCharArray());
 			} catch (Exception e) {
 				throw new SQLException(json);
 			}
@@ -589,7 +596,7 @@ public class RestResultSet implements ResultSet {
 	}
 
 	public Clob getClob(int columnIndex) throws SQLException {
-		if(columnIndex == 1) {
+		if(columnIndex == 1 || columnIndex == 2) {
 			try {
 				String json = rsu.rowToJson(restCon, realRs, jsonParams, queryParams);
 				
@@ -600,12 +607,16 @@ public class RestResultSet implements ResultSet {
 					}
 				}
 				
-				return new SerialClob(json.toCharArray());
+				if(columnIndex == 1) {
+					return new SerialClob(json.toCharArray());
+				}else {
+					return new SerialClob(rsu.getRealVals().toCharArray());
+				}
 			} catch (Exception e) {
 				throw new SQLException(e);
 			}
 		}
-		throw new SQLException("Only columnnumber 1 is available in rest driver");
+		throw new SQLException("Only columnnumber 1 or 2 is available in rest driver");
 	}
 
 	public Array getArray(int columnIndex) throws SQLException {
@@ -625,7 +636,7 @@ public class RestResultSet implements ResultSet {
 	}
 
 	public Clob getClob(String columnLabel) throws SQLException {
-		if(RestDriver.restColumnName.contentEquals(columnLabel)) {
+		if(RestDriver.restColumnNameJson.contentEquals(columnLabel)) {
 			try {
 				String json = rsu.rowToJson(restCon, realRs, jsonParams, queryParams);
 				return new SerialClob(json.toCharArray());
@@ -633,7 +644,7 @@ public class RestResultSet implements ResultSet {
 				throw new SQLException(e);
 			}
 		}
-		throw new SQLException("Only " + RestDriver.restColumnName + " column is available in rest driver");
+		throw new SQLException("Only " + RestDriver.restColumnNameJson + " column is available in rest driver");
 	}
 
 	public Array getArray(String columnLabel) throws SQLException {

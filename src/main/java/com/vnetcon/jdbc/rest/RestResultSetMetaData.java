@@ -15,7 +15,7 @@ public class RestResultSetMetaData implements ResultSetMetaData {
 	}
 
 	public int getColumnCount() throws SQLException {
-		return 1;
+		return 2;
 	}
 
 	public boolean isAutoIncrement(int column) throws SQLException {
@@ -47,11 +47,17 @@ public class RestResultSetMetaData implements ResultSetMetaData {
 	}
 
 	public String getColumnLabel(int column) throws SQLException {
-		return RestDriver.restColumnName;
+		if(column == 1) {
+			return RestDriver.restColumnNameJson;
+		}
+		return RestDriver.restColumnNameExecVals;
 	}
 
 	public String getColumnName(int column) throws SQLException {
-		return RestDriver.restColumnName;
+		if(column == 1) {
+			return RestDriver.restColumnNameJson;
+		}
+		return RestDriver.restColumnNameExecVals;
 	}
 
 	public String getSchemaName(int column) throws SQLException {
