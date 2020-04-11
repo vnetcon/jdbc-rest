@@ -39,49 +39,24 @@ public class ResultSetUtils {
 		}
 		
 		ResultSet rs = stmt.executeQuery(sql);
-		int rowCount = 0;
-		String firstBuf = null;
 		json.append("[");
-		while(rs.next()) {
-			
-			if(firstBuf != null && rowCount == 1) {
-				// moved up so in every case an array is returned in subqueries
-				//json.append("[");
-				json.append(firstBuf);
-				firstBuf = null;
+		while (rs.next()) {
+
+			json.append(",");
+			char[] buf = new char[1024];
+			int iRead = 0;
+			StringBuilder sb = new StringBuilder();
+
+			Reader r = rs.getClob(1).getCharacterStream();
+			while ((iRead = r.read(buf)) > -1) {
+				sb.append(buf, 0, iRead);
 			}
-			
-			if(rowCount == 0) {
-				char[] buf = new char[1024];
-				int iRead = 0;
-				StringBuilder sb = new StringBuilder();
-				
-				Reader r = rs.getClob(1).getCharacterStream();
-				while((iRead = r.read(buf)) > -1) {
-					sb.append(buf, 0, iRead);
-				}
-				firstBuf = sb.toString();
-			}else {
-				json.append(",");
-				char[] buf = new char[1024];
-				int iRead = 0;
-				StringBuilder sb = new StringBuilder();
-				
-				Reader r = rs.getClob(1).getCharacterStream();
-				while((iRead = r.read(buf)) > -1) {
-					sb.append(buf, 0, iRead);
-				}
-				json.append(sb.toString());
-			}
-			rowCount++;
+			json.append(sb.toString());
+
 		}
 		stmt.close();
 
-		if(rowCount == 1) {
-			json.append(firstBuf);
-		}else {
-			json.append("]");
-		}
+		json.append("]");
 
 		String sRet = json.toString();
 		sRet = fixJson(sRet);
