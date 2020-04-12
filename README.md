@@ -31,6 +31,7 @@ which poduce following json
 In this example we used r_fname parameter. r_ stands for request parameter that are passed in jdbc-restservelt to driver and are replaced with the values the requester send to servlet. In here we add "r_fname=Adam" as a default request parameter if the requests parameters are not available in real (e.g. you are running the queries in DBeaver).
 
 
+<!--
 ## Quick Start (for windows 64bit) - updated 06/03/2020 (dd/mm/yyyy)
 For setting up the development environment you don't need install anything. 
 You just download the zip file and start the downloaded software with following steps:  
@@ -47,6 +48,7 @@ You just download the zip file and start the downloaded software with following 
 After this you can point your browser to http://localhost:8080/jdbc-rest/rest/default/getUser/v1?userid=3 
 to see the demo json.  
 The DBeaver has ready configured setting for creating and executing sql statements against local postgresql database.
+-->
 
 
 ## Building
