@@ -140,9 +140,5 @@ Below are some notes related to this. More detailed examples can be fuond from d
 ## Data types
 All data is treated as stings. If you need to insert/update data in different data type you need to put the parameter into database function that will do the conversion.  
 insert into table a (a, b) values ('{r_a}', to_number('{r_b}') --[json]
-
-
-![jdbc-json-dbeaver](http://vnetcon.s3-website-eu-west-1.amazonaws.com/img/jdbc-json-dbeaverx.png)
-
-
-
+  
+  
