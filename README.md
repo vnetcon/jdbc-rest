@@ -14,7 +14,7 @@ To use jsbc-rest dirver in DBeaver you need to take following steps:
 4. In edit driver settings add jdbc-rest driver and the actual driver (e.g. Oracle, SQL Server, Postgresql etc.) to driver settings jars
   
 Below is a screenshot of how you can add the jars and configure drver settings.
-![jdbc-rest-configuration](http://vnetcon.s3-website-eu-west-1.amazonaws.com/img/jdbc-rest-configuration.png)
+![jdbc-rest-configuration](http://vnetcon.s3-website-eu-west-1.amazonaws.com/img/jdbc-rest-configuration.PNG)
   
 The actual database connection information (e.g. oracle, sql server etc.) will be read from /opt/vnetcon/conf/database.properties file. In windows this should be c:\opt\vnetcon\conf\database.properties file.
   
