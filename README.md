@@ -74,7 +74,7 @@ The DBeaver has ready configured setting for creating and executing sql statemen
 In theory all databases that have JDBC driver. Postgresql, Oracle, SQL Server etc.
 
 ## jdbc url
-he key for understanding the jdbc url format is to keep in mind, that the /etc/vnetcon/database.properties file is the 
+he key for understanding the jdbc url format is to keep in mind, that the /opt/vnetcon/conf/database.properties file is the 
 start point for creating connection. Example from following url
   
 ```
