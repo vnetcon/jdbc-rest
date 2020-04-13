@@ -18,7 +18,7 @@ Below is a screenshot of how you can add the jars and configure drver settings.
   
 The actual database connection information (e.g. oracle, sql server etc.) will be read from /opt/vnetcon/conf/database.properties file. In windows this should be c:\opt\vnetcon\conf\database.properties file.
   
-Below is an example fo this file
+Below is an example of this file
 ```
 # connection properties
 default.jdbc.driver=org.postgresql.Driver
