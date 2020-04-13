@@ -1,3 +1,16 @@
+## Turn your sql statements to json without programming
+jdbc-rest is a jdbc driver that wraps the actual jdbc driver liek postgresq, oracle, sql server etc.
+After wrapping the sql statements and results goes first though jdbc-rest driver, which will turn the native ResultSet to json.
+On top of this we have build [jdbc-restservelt](https://github.com/vnetcon/jdbc-restservlet) - rest api server that turns your sql statements (select/insert/update/delete) to rest api without any extra coding.
+  
+Below is a picture of DBeaver where you can execute sql statements and see the results as json
+![jdbc-json-dbeaver](http://vnetcon.s3-website-eu-west-1.amazonaws.com/img/jdbc-json-dbeaverx.png)
+  
+## Setting up DBeaver
+  
+
+
+
 ## Short overview with sql examples
 Below are couple of sql statements to show how to convert sql statements to json with this jdbc driver.  
 Below is a simple query
@@ -110,9 +123,6 @@ Below are some notes related to this. More detailed examples can be fuond from d
 All data is treated as stings. If you need to insert/update data in different data type you need to put the parameter into database function that will do the conversion.  
 insert into table a (a, b) values ('{r_a}', to_number('{r_b}') --[json]
 
-
-## Screenshots
-Below is a screenshot of DBeqver executing sql statements
 
 ![jdbc-json-dbeaver](http://vnetcon.s3-website-eu-west-1.amazonaws.com/img/jdbc-json-dbeaverx.png)
 
