@@ -7,9 +7,27 @@ Below is a picture of DBeaver where you can execute sql statements and see the r
 ![jdbc-json-dbeaver](http://vnetcon.s3-website-eu-west-1.amazonaws.com/img/jdbc-json-dbeaverx.png)
   
 ## Setting up DBeaver
+To use jsbc-rest dirver in DBeaver you need to take following steps:
+1. Download [DBeaver](https://dbeaver.io/)
+2. Clone this project and build it
+3. Add new JDBC connection to DBeaver (Generic)
+4. In edit driver settings add jdbc-rest driver and the actual driver (e.g. Oracle, SQL Server, Postgresql etc.) to driver settings jars
   
-
-
+Below is a screenshot of how you can add the jars and configure drver settings.
+![jdbc-rest-configuration](http://vnetcon.s3-website-eu-west-1.amazonaws.com/img/jdbc-rest-configuration.png)
+  
+The actual database connection information (e.g. oracle, sql server etc.) will be read from /opt/vnetcon/conf/database.properties file. In windows this should be c:\opt\vnetcon\conf\database.properties file.
+  
+Below is an example fo this file
+```
+# connection properties
+default.jdbc.driver=org.postgresql.Driver
+default.jdbc.url=jdbc:postgresql://localhost:5432/postgres
+default.jdbc.user=<database username>
+default.jdbc.pass=<database password>
+default.jdbc.logcon=default
+```
+  
 
 ## Short overview with sql examples
 Below are couple of sql statements to show how to convert sql statements to json with this jdbc driver.  
