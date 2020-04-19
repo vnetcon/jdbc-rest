@@ -16,6 +16,7 @@ public class ResultSetUtils {
 	
 	class RealValues {
 		public String mainSQL;
+		public Map<String, String> params;
 		public Map<String, String> subqueries = new HashMap<String, String>();
 	}
 	
@@ -83,6 +84,7 @@ public class ResultSetUtils {
 //		this.jsonParams = jsonParams;
 //		this.queryParams = queryParams;
 		
+		rv.params = queryParams;
 		StringBuilder asJson = new StringBuilder();
 		List<String> colNames = null;
 		int iColCount = rs.getMetaData().getColumnCount();

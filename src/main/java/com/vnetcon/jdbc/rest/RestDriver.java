@@ -8,8 +8,10 @@ import java.sql.DriverPropertyInfo;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -103,6 +105,24 @@ public class RestDriver implements Driver {
 		
 		return safeStr;
 	}
+	
+	public static List<String> getSqlRequestParameters(String sql) throws SQLException {
+		List<String> aRet = new ArrayList<String>();
+		String b = sql;
+		int index = -1;
+		while((index = b.indexOf("'{")) > -1) {
+			b = b.substring(index + 2);
+			index = b.indexOf("}'");
+			String param = b.substring(0, index);
+			if(param.toLowerCase().startsWith("r_")) {
+				param = param.substring(2);
+				aRet.add( param);
+			}
+			b = b.substring(index + 2);
+		}
+		return aRet;
+	}
+
 	
 	public static Map<String, String> getJsonParams(String sql) throws SQLException {
 		Map<String, String> params = new LinkedHashMap<String, String>();
