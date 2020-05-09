@@ -1,4 +1,7 @@
 ## Turn your sql statements to json without programming
+
+This is a sub project of our main project [curvy](https://github.com/vnetcon/curvy). The easy full stack web development environment.
+
 jdbc-rest is a jdbc driver that wraps the actual jdbc driver liek postgresq, oracle, sql server etc.
 After wrapping the sql statements and results goes first though jdbc-rest driver, which will turn the native ResultSet to json.
 On top of this we have build [jdbc-restservelt](https://github.com/vnetcon/jdbc-restservlet) - rest api server that turns your sql statements (select/insert/update/delete) to rest api without any extra coding.
