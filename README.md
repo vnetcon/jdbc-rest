@@ -104,10 +104,6 @@ the "default" is the "prefix" in configuration parameters in database.properties
   
 The jdbc-rest json does not have any parameters
 
-## Commercial use
-If you want to use this in closed code project or product you can buy a 99 USD license [here](https://vnetcon.com)  
-If you think the price is too low or high you can also change the price there :)
-
 ## sql syntax and parameters
 In short the idea is to contert normal sql to json by with --[json] comment. This comment will tell the driver 
 to convert execute the statement as jdbc-rest statement. Below is a simple example
