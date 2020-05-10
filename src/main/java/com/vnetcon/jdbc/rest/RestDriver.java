@@ -1,6 +1,8 @@
 package com.vnetcon.jdbc.rest;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -214,10 +216,18 @@ public class RestDriver implements Driver {
 	
 	private void loadProperties(String url) throws SQLException {
 		try {
-			FileInputStream fIn = new FileInputStream(dbConf);
+			
 			Properties p = new Properties();
-			p.load(fIn);
-			fIn.close();
+			File f = new File(dbConf);
+			if(f.exists()) {
+				FileInputStream fIn = new FileInputStream(dbConf);
+				p.load(fIn);
+				fIn.close();
+			} else {
+				InputStream in = this.getClass().getClassLoader().getResourceAsStream("/database.properties");
+				p.load(in);
+				in.close();
+			}			
 			dbProps.put(url, p);
 		}catch(Exception e) {
 			throw new SQLException(e);
